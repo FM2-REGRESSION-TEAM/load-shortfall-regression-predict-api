@@ -21,7 +21,9 @@
 import pickle
 import json
 import numpy as np
+import pandas as pd
 from model import load_model, make_prediction
+from sklearn.ensemble import RandomForestRegressor
 from flask import Flask, request, jsonify
 
 # Application definition
@@ -30,7 +32,7 @@ app = Flask(__name__)
 # Load our model into memory.
 # Please update this path to reflect your own trained model.
 static_model = load_model(
-    path_to_model='assets/trained-models/load_shortfall_simple_lm_regression.pkl')
+    path_to_model='assets/trained-models/random_model.pkl')
 
 print ('-'*40)
 print ('Model successfully loaded')
