@@ -23,7 +23,6 @@ import json
 import numpy as np
 from model import load_model, make_prediction
 from flask import Flask, request, jsonify
-from sklearn.ensemble import RandomForestRegressor
 
 # Application definition
 app = Flask(__name__)
@@ -31,7 +30,7 @@ app = Flask(__name__)
 # Load our model into memory.
 # Please update this path to reflect your own trained model.
 static_model = load_model(
-    path_to_model='assets/trained-models/random_model.pkl')
+    path_to_model='assets/trained-models/model_rfr.pkl')
 
 print ('-'*40)
 print ('Model successfully loaded')
@@ -52,9 +51,11 @@ def model_prediction():
     data = request.get_json(force=True)
     # We then preprocess our data, and use our pretrained model to make a
     # prediction.
+
     output = make_prediction(data, static_model)
     # We finally package this prediction as a JSON object to deliver a valid
     # response with our API.
+ 
     return jsonify(output)
 
 # Configure Server Startup properties.

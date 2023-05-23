@@ -27,7 +27,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import bz2
-import pickle as cPickle
+import pickle
 import json
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import *
