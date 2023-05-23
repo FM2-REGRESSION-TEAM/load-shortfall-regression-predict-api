@@ -102,27 +102,17 @@ def _preprocess_data(data):
     feature_vector_df['Seville_pressure'] = pd.to_numeric(feature_vector_df['Seville_pressure'])
     feature_vector_df['Valencia_wind_deg'] = pd.to_numeric(feature_vector_df['Valencia_wind_deg'])
 
-    mode = pd.concat([feature_vector_df.Valencia_pressure]).mode()
-    # print(mode)
-    
 
-    X = feature_vector_df.drop(['load_shortfall_3h', 'time'], axis=1)
-    y = feature_vector_df['load_shortfall_3h']
-    
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
+    predict_vector = feature_vector_df[['Bilbao_pressure',
+            'Seville_temp_max', 'Madrid_pressure',
+            'Valencia_temp_max', 'Valencia_temp',
+            'Seville_temp', 'Valencia_temp_min',
+            'Barcelona_temp_max', 'Madrid_temp_max', 'Barcelona_temp',
+            'Bilbao_temp_min', 'Bilbao_temp', 'Barcelona_temp_min',
+            'Bilbao_temp_max', 'Seville_temp_min', 'Madrid_temp', 'Madrid_temp_min','year',
+            'month', 'day', 'hour', 'load_shortfall_3h']]
 
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    X_standardise = pd.DataFrame(X_scaled, columns=X.columns)
-    X_standardise = pd.DataFrame(X_scaled, columns=X.columns)
-  
-
-    feature_vector_df = feature_vector_df.drop(['Seville_pressure','load_shortfall_3h' ,'Valencia_wind_deg', 'time', 'Valencia_pressure'], axis=1)
-    # feature_vector_df= feature_vector_df.drop(['Valencia_pressure'] , axis=1)
-    predict_vector = feature_vector_df
-
-    return feature_vector_df
+    return predict_vector
 
 def load_model(path_to_model:str):
     """Adapter function to load our pretrained model into memory.
