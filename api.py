@@ -21,10 +21,9 @@
 import pickle
 import json
 import numpy as np
-import pandas as pd
 from model import load_model, make_prediction
-from sklearn.ensemble import RandomForestRegressor
 from flask import Flask, request, jsonify
+from sklearn.ensemble import RandomForestRegressor
 
 # Application definition
 app = Flask(__name__)
