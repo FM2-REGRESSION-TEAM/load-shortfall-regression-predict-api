@@ -69,15 +69,7 @@ def _preprocess_data(data):
     
     # ------------------------------------------------------------------------
 
-    # remove missing values/ features
-    # mode = pd.concat([feature_vector_df.Valencia_pressure]).mode()
-    # feature_vector_df.Valencia_pressure.fillna(mode[0] , inplace=True)
 
-    # df_test1 = feature_vector_df.copy()
-   
-    # mode = pd.concat([ feature_vector_df.Valencia_pressure]).mode()
-    # print("sdfgh" , mode[0])
-    # feature_vector_df.Valencia_pressure.fillna(mode[0] , inplace=True)
 
     # create new features
     feature_vector_df['time'] = pd.to_datetime(feature_vector_df['time'])
@@ -105,12 +97,8 @@ def _preprocess_data(data):
 
     predict_vector = feature_vector_df[['Bilbao_pressure',
             'Seville_temp_max', 'Madrid_pressure',
-            'Valencia_temp_max', 'Valencia_temp',
-            'Seville_temp', 'Valencia_temp_min',
-            'Barcelona_temp_max', 'Madrid_temp_max', 'Barcelona_temp',
-            'Bilbao_temp_min', 'Bilbao_temp', 'Barcelona_temp_min',
-            'Bilbao_temp_max', 'Seville_temp_min', 'Madrid_temp', 'Madrid_temp_min','year',
-            'month', 'day', 'hour', 'load_shortfall_3h']]
+            'Valencia_temp_max','year',
+            'month', 'day', 'hour',]]
 
     return predict_vector
 
