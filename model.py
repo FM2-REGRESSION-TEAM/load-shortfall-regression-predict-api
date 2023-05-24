@@ -81,23 +81,10 @@ def _preprocess_data(data):
     feature_vector_df['day'] = feature_vector_df['time'].dt.day       # power varies depending on day of the week
     feature_vector_df['hour'] = feature_vector_df['time'].dt.hour     # power varies depending on the time of the day
 
-    feature_vector_df[['month', 'day', 'hour']] = feature_vector_df[['month', 'day', 'hour']].astype('int64')
+    feature_vector_df[['year', 'month', 'day', 'hour']] = feature_vector_df[['year','month', 'day', 'hour']].astype('int64')
 
-    df_date = [i for i in feature_vector_df.columns if i != 'load_shortfall_3h'] + ['load_shortfall_3h']
-    feature_vector_df= feature_vector_df.reindex(columns=df_date)
-    print("shape here )))))))))))=========" , feature_vector_df.shape)
-    #Extracting the numeric on our data but datatype still object
-    feature_vector_df['Seville_pressure'] = feature_vector_df['Seville_pressure'].str.extract('(\d+)')
-    feature_vector_df['Valencia_wind_deg'] = feature_vector_df['Valencia_wind_deg'].str.extract('(\d+)')
-
-    #converting object into numeric data type
-    feature_vector_df['Seville_pressure'] = pd.to_numeric(feature_vector_df['Seville_pressure'])
-    feature_vector_df['Valencia_wind_deg'] = pd.to_numeric(feature_vector_df['Valencia_wind_deg'])
-
-
-    predict_vector = feature_vector_df[['Valencia_temp', 'Seville_temp',
-       'Valencia_temp_min', 'Barcelona_temp_max', 'Madrid_temp_max',
-       'Barcelona_temp', 'year', 'month', 'day', 'hour']]
+    predict_vector = feature_vector_df[['Madrid_wind_speed','Valencia_temp', 'Seville_temp','Bilbao_rain_1h',
+                                        'Valencia_wind_speed', 'year', 'month', 'day', 'hour',]]
 
     return predict_vector
 
@@ -117,9 +104,6 @@ def load_model(path_to_model:str):
         The pretrained model loaded into memory.
 
     """
-    # data = bz2.BZ2File(path_to_model + '.pbz2', 'rb')
-    # data = cPickle.load(data)
-    
     return pickle.load(open(path_to_model, 'rb'))
 
 
