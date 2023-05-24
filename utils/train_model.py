@@ -13,7 +13,6 @@
 import pandas as pd
 import pickle
 from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
 
 # Fetch training data and preprocess for modeling
 train = pd.read_csv('./data/df_train.csv')
@@ -21,16 +20,14 @@ train = pd.read_csv('./data/df_train.csv')
 y_train = train[['load_shortfall_3h']]
 X_train = train[['Valencia_temp', 'Seville_temp',
        'Valencia_temp_min', 'Barcelona_temp_max', 'Madrid_temp_max',
-       'Barcelona_temp', 'Bilbao_temp_min', 'Bilbao_temp',
-       'Barcelona_temp_min', 'Bilbao_temp_max', 'Seville_temp_min',
-       'Madrid_temp', 'Madrid_temp_min', 'year', 'month', 'day', 'hour']]
+       'Barcelona_temp', 'year', 'month', 'day', 'hour']]
 
 # Fit model
-rfr = RandomForestRegressor()
+lm_regression = LinearRegression(normalize=True)
 print ("Training Model...")
-rfr.fit(X_train, y_train)
+lm_regression.fit(X_train, y_train)
 
 # Pickle model for use within our API
-save_path = '../assets/trained-models/rfr_model.pkl'
+save_path = '../assets/trained-models/load_shortfall_simple_lm_regression.pkl'
 print (f"Training completed. Saving model to: {save_path}")
-pickle.dump(rfr, open(save_path,'wb'))
+pickle.dump(lm_regression, open(save_path,'wb'))

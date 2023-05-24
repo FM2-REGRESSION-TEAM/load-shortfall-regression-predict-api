@@ -97,9 +97,7 @@ def _preprocess_data(data):
 
     predict_vector = feature_vector_df[['Valencia_temp', 'Seville_temp',
        'Valencia_temp_min', 'Barcelona_temp_max', 'Madrid_temp_max',
-       'Barcelona_temp', 'Bilbao_temp_min', 'Bilbao_temp',
-       'Barcelona_temp_min', 'Bilbao_temp_max', 'Seville_temp_min',
-       'Madrid_temp', 'Madrid_temp_min', 'year', 'month', 'day', 'hour']]
+       'Barcelona_temp', 'year', 'month', 'day', 'hour']]
 
     return predict_vector
 
